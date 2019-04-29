@@ -12,6 +12,7 @@ import sys
 from .utilities import pack_raw, calculate_black_level, render_raw
 from .cnn import network
 import os
+from PIL import Image
 # Create your views here.
 
 def upload(request):
@@ -58,10 +59,21 @@ def cnn(filename):
 	render = output*255
 	img = render.astype(np.uint8)
 	imageio.imwrite('.' + savename + 'm.png', img)
-	
+	resize('.' + savename + 'm.png', '.' + savename + 'p.png')	
 
 def preview(request):
 	filename = request.GET['filename']
 	input = filename[:filename.index('.') ] + 'i.png'
 	output = filename[:filename.index('.')] + 'm.png'
-	return render(request, 'transform/preview.html', {'input': input, 'output': output})
+	preview = filename[:filename.index('.')] + 'p.png'
+	return render(request, 'transform/preview.html', {'input': input, 'output': output, 'preview': preview})
+
+
+def resize(filename, savename):
+	basewidth = 400
+	img = Image.open(filename)
+	wpercent = (basewidth/float(img.size[0]))
+	hsize = int((float(img.size[1])*float(wpercent)))
+	img = img.resize((basewidth,hsize), Image.ANTIALIAS)
+	img.save(savename) 
+
