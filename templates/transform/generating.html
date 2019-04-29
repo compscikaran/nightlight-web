@@ -11,4 +11,15 @@
         
     </div>
 </div>
+<script>
+const request = new XMLHttpRequest();
+const url = 'http://localhost:8000/transform/run/';
+request.open('GET', url, true);
+request.setRequestHeader('filename','{{ img.image.url }}');
+request.onload = function() {
+    window.location = 'http://localhost:8000/transform/preview?filename=' + '{{ img.image.url }}';
+}
+request.send();
+
+</script>
 {% endblock content %}
