@@ -21,5 +21,6 @@ from django.contrib.staticfiles.urls import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('transform.urls'))
+    path('', include('info.urls')),
+    path('transform/', include('transform.urls'))
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
