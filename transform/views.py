@@ -3,6 +3,15 @@ from .models import ImageModel
 from django.utils import timezone
 from django.http import JsonResponse
 import asyncio
+import numpy as np
+import tensorflow as tf
+import rawpy
+import glob
+import imageio
+import sys
+from .utilities import pack_raw, calculate_black_level, render_raw
+from .cnn import network
+import os
 # Create your views here.
 
 def upload(request):
@@ -28,8 +37,31 @@ def run_image(request):
 
 
 def cnn(filename):
-	print('Deep Learning ... on ' + str(filename))
+	savename = filename[:filename.index('.')]
+	input_path = '.' + filename
+	render_path = '.' + savename + 'i.png'
+	render_raw(input_path, render_path)
+	tf.reset_default_graph()
+	sess = tf.Session()
+	input_image = tf.placeholder(tf.float32, [None, None, None, 4])
+	output_image = network(input_image)
+	sess.run(tf.global_variables_initializer())
+	black_level = calculate_black_level(filename)
+	raw = rawpy.imread('.' + filename)
+	resized = np.expand_dims(pack_raw(raw, black_level), axis=0) * 300
+	input_full = np.minimum(resized, 1.0)
+	saver = tf.train.Saver()
+	saver.restore(sess, "./transform/model/my-test-model8l.ckpt")
+	output = sess.run([output_image], feed_dict={ input_image: input_full})
+	output = np.minimum(np.maximum(output, 0), 1)
+	output = output[0,0,:,:,:]
+	render = output*255
+	img = render.astype(np.uint8)
+	imageio.imwrite('.' + savename + 'm.png', img)
+	
 
 def preview(request):
 	filename = request.GET['filename']
-	return render(request, 'transform/preview.html', {'filename': filename})
+	input = filename[:filename.index('.') ] + 'i.png'
+	output = filename[:filename.index('.')] + 'm.png'
+	return render(request, 'transform/preview.html', {'input': input, 'output': output})
