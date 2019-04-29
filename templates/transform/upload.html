@@ -4,10 +4,11 @@
     <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6">
+        <h5 style="color:red;"><i>{{ error }}</i></h5>
             <form id="uploadform" method="POST" action="{% url 'upload' %}" enctype="multipart/form-data">
             {% csrf_token %}
             <label for="image">Select Image</label>
-            <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp"><br><br>
+            <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp" name="image"><br><br>
             <button type="submit" class="btn btn-secondary">Submit</button>    
             </form>
             <br><br><br><br><br><br><br><br><br><br>
