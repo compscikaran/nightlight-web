@@ -1,3 +1,7 @@
 a,label {
     font-size: 18px;
 }
+form {
+    width: 200px;
+    margin: 0 auto;
+}
