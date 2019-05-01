@@ -33,15 +33,19 @@ def upload(request):
 def run_image(request):
 	if request.method == 'GET':
 		filename = request.headers['Filename']
+		render_input(filename)
 		cnn(filename)
 		return JsonResponse({'msg': 'success'})
 
 
-def cnn(filename):
+def render_input(filename):
 	savename = filename[:filename.index('.')]
 	input_path = '.' + filename
 	render_path = '.' + savename + 'i.png'
 	render_raw(input_path, render_path)
+
+
+def cnn(filename):
 	tf.reset_default_graph()
 	sess = tf.Session()
 	input_image = tf.placeholder(tf.float32, [None, None, None, 4])
@@ -57,6 +61,7 @@ def cnn(filename):
 	output = np.minimum(np.maximum(output, 0), 1)
 	output = output[0,0,:,:,:]
 	render = output*255
+	savename = filename[:filename.index('.')]
 	img = render.astype(np.uint8)
 	imageio.imwrite('.' + savename + 'm.png', img)
 	resize('.' + savename + 'm.png', '.' + savename + 'p.png')	

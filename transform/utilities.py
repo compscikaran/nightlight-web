@@ -36,4 +36,5 @@ def calculate_black_level(filename):
 def render_raw(image, savename):
     im = rawpy.imread(image)
     rgb = im.postprocess(use_camera_wb=True, half_size=False, no_auto_bright=True, output_bps=16)
-    imageio.imwrite(savename, rgb)
+    rgb2 = rgb.astype(np.uint8)
+    imageio.imwrite(savename, rgb2)
