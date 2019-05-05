@@ -24,10 +24,11 @@ def upload(request):
 			imodel.image = request.FILES['image']
 			imodel.timestamp = timezone.datetime.now()
 			imodel.save()
-			return render(request, 'transform/generating.html', {'img': imodel})
+			ip = request.META.get('REMOTE_ADDR')
+			port = request.META.get('SERVER_PORT')
+			return render(request, 'transform/generating.html', {'img': imodel, 'ip': ip, 'port': port})
 		else:
 			return render(request, 'transform/upload.html', {'error': 'Please provide a valid image'})
-		return render(request, 'transform/generating.html')
 
 
 def run_image(request):
