@@ -52,7 +52,7 @@ def cnn(filename):
 	input_image = tf.placeholder(tf.float32, [None, None, None, 4])
 	output_image = network(input_image)
 	sess.run(tf.global_variables_initializer())
-	black_level = calculate_black_level(filename)
+	black_level = calculate_black_level('.' + filename)
 	raw = rawpy.imread('.' + filename)
 	resized = np.expand_dims(pack_raw(raw, black_level), axis=0) * 300
 	input_full = np.minimum(resized, 1.0)
