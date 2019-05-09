@@ -27,7 +27,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+f = open('hosts.txt','r')
+for line in f:
+    ALLOWED_HOSTS.append(line.rstrip('\n'))
+print(ALLOWED_HOSTS)
 # Application definition
 
 INSTALLED_APPS = [
