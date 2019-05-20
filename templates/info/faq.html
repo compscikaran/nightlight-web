@@ -1,1 +1,102 @@
 {% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 style="text-align:center">FAQ</h1><br><br><br><br><br>     
+        </div>
+    </div>
+    <div class="row">
+            <div class="col-lg-12">
+                <p><i><b>Q</b>: What does Nightlight Do ?</i></p>
+                <p><b>A</b>: Nightlight uses Deep Learning Techniques to take pitch dark images and enhance the photo so that all the details are visible.
+                </p>
+            </div>
+    </div>
+    <br><br>
+    <div class="row">
+        <div class="col-lg-12">
+            <p><i><b>Q</b>: What kind of images does nightlight support ?</i></p>
+            <p><b>A</b>: Nightlight supports RAW images of .DNG (Adobe Digital Negative) format. RAW images are a special type of image that 
+                preserves all the details from the camera sensor.
+                Other RAW formats used in cameras can easily
+                be converted to .DNG using Adobe's official <a href="https://helpx.adobe.com/in/photoshop/using/adobe-dng-converter.html">
+                DNG Converter</a>
+            </p>
+        </div>
+    </div>
+    <br><br>
+    <div class="row">
+        <div class="col-lg-12">
+            <p><i><b>Q</b>: How to capture .DNG photos using a mobile phone ?</i></p>
+            <p><b>A</b>: The official Adobe Lightroom app is capable of capturing using the DNG standard. They are available on both iOS and Android. 
+                <br>See the steps below on how to capture images using this app.<br>
+                <ol>
+                    <li>
+                        Download the Adobe Lightroom app and signup for a free account.
+                    </li>
+                    <li>
+                        Click on the camera icon and capture image after ensuring that format is set to DNG.
+                    </li>
+                    <li>
+                        Go back to the main menu and Go to All Photos.
+                    </li>
+                    <li>
+                        Go to desired photo and select the menu on the top right and press export original
+                    </li>
+                </ol>
+                <br><br>
+            </p>
+        </div>
+    </div>
+    <div class="row">
+            <div class="col-md-3">
+                <img src="{% static 'assets/s1.png' %}" width="270px" height="auto">
+                <br><p style="text-align:center">Step 1</p>
+            </div>
+            <div class="col-md-3">
+                <img src="{% static 'assets/s2.png' %}" width="270px" height="auto">
+                <br><p style="text-align:center">Step 2</p>
+            </div>
+            <div class="col-md-3">
+                <img src="{% static 'assets/s3.png' %}" width="270px" height="auto">
+                <br><p style="text-align:center">Step 3</p>
+            </div>
+            <div class="col-md-3">
+                <img src="{% static 'assets/s4.png' %}" width="270px" height="auto">
+                <br><p style="text-align:center">Step 4</p>
+            </div>
+    </div>
+    <br><br><br>
+    <div class="row">
+            <div class="col-lg-12">
+                <p><i><b>Q</b>: What kind of cameras does nightlight support ?</i></p>
+                <p><b>A</b>: Nightlight will work well with any good DSLR camera that supports shooting in RAW mode. 
+                    In case of phone cameras it supports any phone with a decently good camera preferably with a
+                    Sony IMX series or Samsung Isocell GM Series sensor. Most phones in the mid range segment and all the flagship phones satisfy this criteria.
+                    Some popular examples are given below. 
+                </p>
+            </div>
+    </div>
+    <div class="row">
+            <div class="col-md-3">
+                <img src="{% static 'assets/p1.jpg' %}" width="270px" height="auto">
+                <br><p style="text-align:center">One Plus 6/6T <br> (IMX 519)</p>
+            </div>
+            <div class="col-md-3">
+                <img src="{% static 'assets/p2.jpg' %}" width="270px" height="auto">
+                <br><p style="text-align:center">Redmi Note 7/7Pro <br> (IMX 586/ Isocell GM1)</p>
+            </div>
+            <div class="col-md-3">
+                <img src="{% static 'assets/p3.jpg' %}" width="270px" height="auto">
+                <br><p style="text-align:center">iPhone X/XS/XR <br> (iSight Sensor)</p>
+            </div>
+            <div class="col-md-3">
+                <img src="{% static 'assets/p4.jpg' %}" width="270px" height="auto">
+                <br><p style="text-align:center">Google Pixel 3/3a/3xl <br> (IMX 363)</p>
+            </div>
+    </div>
+    <br><br><br><br><br>
+</div>
+{% endblock content %}
