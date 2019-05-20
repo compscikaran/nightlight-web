@@ -14,7 +14,7 @@ from .cnn import network
 import os
 from PIL import Image
 # Create your views here.
-
+import time
 def upload(request):
 	if request.method == 'GET':
 		return render(request, 'transform/upload.html')
@@ -34,8 +34,15 @@ def upload(request):
 def run_image(request):
 	if request.method == 'GET':
 		filename = request.headers['Filename']
+		start = time.time()
 		render_input(filename)
+		middle = time.time()
+		render_time = middle - start
+		print('time to render input' + str(render_time))
 		cnn(filename)
+		end = time.time()
+		model_time = end - middle
+		print('time to run image through model' + str(model_time))
 		return JsonResponse({'msg': 'success'})
 
 
@@ -57,7 +64,7 @@ def cnn(filename):
 	resized = np.expand_dims(pack_raw(raw, black_level), axis=0) * 300
 	input_full = np.minimum(resized, 1.0)
 	saver = tf.train.Saver()
-	saver.restore(sess, "./transform/model/my-test-model8l.ckpt")
+	saver.restore(sess, "./transform/model/my-test-model8.ckpt")
 	output = sess.run([output_image], feed_dict={ input_image: input_full})
 	output = np.minimum(np.maximum(output, 0), 1)
 	output = output[0,0,:,:,:]
