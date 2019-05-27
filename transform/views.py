@@ -64,7 +64,7 @@ def cnn(filename):
 	resized = np.expand_dims(pack_raw(raw, black_level), axis=0) * 300
 	input_full = np.minimum(resized, 1.0)
 	saver = tf.train.Saver()
-	saver.restore(sess, "./transform/model/my-test-model8.ckpt")
+	saver.restore(sess, "./transform/model/my-test-model8l1.ckpt")
 	output = sess.run([output_image], feed_dict={ input_image: input_full})
 	output = np.minimum(np.maximum(output, 0), 1)
 	output = output[0,0,:,:,:]

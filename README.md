@@ -7,6 +7,10 @@ Steps to run
 >conda install tensorflow
 
 >python -m pip install django pillow rawpy imagio exifread
-3. Download model and place it in transform -> model folder
-4. Run app using
->python3 manage.py runserver 127.0.0.1:8000
+3. Download model files and place them in transform/model/ folder
+4. Download static assets and place them in static/assets/ folder
+5. Setup database using 
+>python manage.py migrate
+6. Run app using
+>python manage.py runserver 
+7. Goto 127.0.0.1:8000 in browser
