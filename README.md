@@ -15,3 +15,5 @@ Steps to run
 6. Run app using
 >python manage.py runserver 
 7. Goto 127.0.0.1:8000 in browser
+
+Based on paper Learning to See in the Dark - https://arxiv.org/abs/1805.01934
