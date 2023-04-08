@@ -1,5 +1,8 @@
 # Nightlight Web App
 
+Bachelors of Technology Major project. In this project we have implemented a CNN based on the paper Learning to see in the dark.
+The CNN uses a U-Net architecture and takes as input dark images and brightens them up so all the details are visible
+
 Steps to run
 
 1. Clone this repo 
@@ -8,7 +11,6 @@ Steps to run
 
 >python -m pip install django pillow rawpy imagio exifread
 3. Download model files from below link and place them in transform/model/ folder
->https://drive.google.com/file/d/1B017V0Ydpu9AEiCyCStyPcjgglS8OVTB/view?usp=sharing
 4. Download static assets and place them in static/assets/ folder
 5. Setup database using 
 >python manage.py migrate
